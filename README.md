@@ -1,3 +1,21 @@
 # Hospital-Web
 
-Proyecto final Web 1 "Hospital"
+
+
+
+Proyecto Final — Desarrollo Web 1
+
+Sistema web orientado a la gestión y administración de un hospital.
+
+
+Descripción
+  -
+
+
+Tecnologías utilizadas
+  -HTML5
+  -CSS3
+  -PHP
+
+Funcionalidad
+  
