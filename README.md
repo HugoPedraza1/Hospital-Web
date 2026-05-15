@@ -87,8 +87,16 @@ Frontend
 * HTML5
 * CSS3
 * JavaScript
+Backend
 * PHP
   
 Diseño UI/UX
 
 * Figma
+
+
+MVP 
+* Login / Register
+* Dashboard admin
+* Listado doctores
+* Agendar cita básica
