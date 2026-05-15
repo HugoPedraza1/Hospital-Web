@@ -2,7 +2,6 @@
 
 Sistema web hospitalario enfocado en la gestión de pacientes, citas médicas e historial clínico.
 
-⸻
 
 Descripción
 
@@ -19,7 +18,6 @@ El sistema permite gestionar:
 
 El objetivo es ofrecer una experiencia similar a plataformas hospitalarias reales utilizando tecnologías web.
 
-⸻
 
 Características principales
 
@@ -32,7 +30,6 @@ Autenticación de usuarios
     * Doctor
     * Paciente
 
-⸻
 
 Gestión de doctores
 
@@ -42,7 +39,6 @@ Gestión de doctores
 * Disponibilidad
 * Perfil médico
 
-⸻
 
 Gestión de pacientes
 
@@ -51,7 +47,6 @@ Gestión de pacientes
 * Datos médicos
 * Historial clínico
 
-⸻
 
 Sistema de citas
 
@@ -62,7 +57,6 @@ Sistema de citas
 * Confirmación de citas
 * Estado de citas
 
-⸻
 
 Historial médico
 
@@ -71,7 +65,6 @@ Historial médico
 * Medicamentos
 * Consultas anteriores
 
-⸻
 
 Dashboard administrativo
 
@@ -81,14 +74,12 @@ Dashboard administrativo
 * Panel responsive
 * Gráficas e indicadores
 
-⸻
 
 Diseño
 
 * Diseño moderno y minimalista
 * Interfaz responsive
 
-⸻
 
 Tecnologías utilizadas
 
@@ -96,7 +87,6 @@ Frontend
 * HTML5
 * CSS3
 * JavaScript
-Backend
 * PHP
   
 Diseño UI/UX
