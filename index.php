@@ -384,17 +384,17 @@ if (isLoggedIn()) {
   <div class="services-grid">
     <?php
     $services = [
-      ['','#dbeafe','Cardiología','Diagnóstico y tratamiento de enfermedades del corazón y sistema cardiovascular.'],
-      ['','#f3e8ff','Neurología','Atención especializada en enfermedades del sistema nervioso central y periférico.'],
-      ['','#dcfce7','Pediatría','Cuidado integral de la salud de niños y adolescentes con especialistas dedicados.'],
-      ['','#fef3c7','Traumatología','Diagnóstico y tratamiento de lesiones y enfermedades del sistema músculo-esquelético.'],
-      ['','#fce7f3','Dermatología','Diagnóstico y tratamiento de enfermedades de la piel, cabello y uñas.'],
-      ['','#f0fdf4','Medicina General','Atención primaria y preventiva para toda la familia en un solo lugar.'],
+      ['<img src="'. BASE_URL .'/assets/img/svg/heart.svg" width="28">','Cardiología','Diagnóstico y tratamiento de enfermedades del corazón y sistema cardiovascular.'],
+      ['<img src="'. BASE_URL .'/assets/img/svg/brain.svg" width="28">','Neurología','Atención especializada en enfermedades del sistema nervioso central y periférico.'],
+      ['<img src="'. BASE_URL .'/assets/img/svg/baby.svg" width="28">','Pediatría','Cuidado integral de la salud de niños y adolescentes con especialistas dedicados.'],
+      ['<img src="'. BASE_URL .'/assets/img/svg/bone.svg" width="28">','Traumatología','Diagnóstico y tratamiento de lesiones y enfermedades del sistema músculo-esquelético.'],
+      ['<img src="'. BASE_URL .'/assets/img/svg/smile.svg" width="28">','Dermatología','Diagnóstico y tratamiento de enfermedades de la piel, cabello y uñas.'],
+      ['<img src="'. BASE_URL .'/assets/img/svg/stethoscope.svg" width="28">','Medicina General','Atención primaria y preventiva para toda la familia en un solo lugar.'],
     ];
-    foreach ($services as [$icon, $bg, $name, $desc]):
+    foreach ($services as [$icon, $name, $desc]):
     ?>
     <div class="service-card">
-      <div class="service-icon" style="background:<?= $bg ?>;"><?= $icon ?></div>
+      <div class="service-icon"><?= $icon ?></div>
       <h3><?= $name ?></h3>
       <p><?= $desc ?></p>
     </div>
@@ -459,7 +459,7 @@ if (isLoggedIn()) {
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand">Hospital Palacio de la salud</div>
-  <p>© <?= date('Y') ?> Hospital Palacio de la salud. Desarrollado por: Hugo Pedraza, Aylin Lobato, Valeria Salinas.</p>
+  <p>Hospital Palacio de la salud. Desarrollado por: Valeria Salinas, Aylin Lobato, Hugo Pedraza.</p>
 </footer>
 
 </body>
