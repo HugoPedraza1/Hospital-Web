@@ -5,27 +5,27 @@ $inicial = strtoupper(substr($nombre, 0, 2));
 $currentUrl = $_SERVER['REQUEST_URI'] ?? '';
 
 $navAdmin = [
-  ['icon'=>'grid',        'label'=>'Dashboard',     'url'=>'pages/admin/dashboard.php'],
-  ['icon'=>'users',       'label'=>'Usuarios',      'url'=>'pages/admin/users.php'],
-  ['icon'=>'stethoscope', 'label'=>'Doctores',      'url'=>'pages/doctores/listar.php'],
-  ['icon'=>'calendar',    'label'=>'Citas',         'url'=>'pages/citas/ver.php'],
-  ['icon'=>'bar-chart',   'label'=>'Reportes',      'url'=>'pages/admin/reports.php'],
+  ['icon'=> BASE_URL . '/assets/img/svg/sidebar-dashboard.svg',    'label'=>'Dashboard',      'url'=>'pages/admin/dashboard.php'],
+  ['icon'=> BASE_URL . '/assets/img/svg/sidebar-user.svg',     'label'=>'Usuarios',       'url'=>'pages/admin/users.php'],
+  ['icon'=> BASE_URL . '/assets/img/svg/sidebar-doctor.svg',     'label'=>'Doctores',       'url'=>'pages/doctores/listar.php'],
+  ['icon'=> BASE_URL . '/assets/img/svg/sidebar-citas.svg',        'label'=>'Citas',          'url'=>'pages/citas/ver.php'],
+  ['icon'=> BASE_URL . '/assets/img/svg/sidebar-reports.svg',     'label'=>'Reportes',       'url'=>'pages/admin/reports.php'],
 ];
 
 $navDoctor = [
-  ['icon'=>'grid',        'label'=>'Dashboard',     'url'=>'pages/doctor/dashboard.php'],
-  ['icon'=>'calendar',    'label'=>'Agenda del Dia','url'=>'pages/doctor/citas.php'],
-  ['icon'=>'users',       'label'=>'Mis Pacientes', 'url'=>'pages/doctor/pacientes.php'],
-  ['icon'=>'file-text',   'label'=>'Historial Medico','url'=>'pages/historial/ver.php'],
-  ['icon'=>'settings',    'label'=>'Configuracion', 'url'=>'pages/doctor/perfil.php'],
+  ['icon'=> BASE_URL . '/assets/img/icons/dashboard.svg',    'label'=>'Dashboard',      'url'=>'pages/doctor/dashboard.php'],
+  ['icon'=> BASE_URL . '/assets/img/icons/citas.svg',        'label'=>'Agenda del Dia', 'url'=>'pages/doctor/citas.php'],
+  ['icon'=> BASE_URL . '/assets/img/icons/usuarios.svg',     'label'=>'Mis Pacientes',  'url'=>'pages/doctor/pacientes.php'],
+  ['icon'=> BASE_URL . '/assets/img/icons/historial.svg',    'label'=>'Historial Medico','url'=>'pages/historial/ver.php'],
+  ['icon'=> BASE_URL . '/assets/img/icons/configuracion.svg','label'=>'Configuracion',  'url'=>'pages/doctor/perfil.php'],
 ];
 
 $navPaciente = [
-  ['icon'=>'grid',        'label'=>'Dashboard',     'url'=>'pages/paciente/dashboard.php'],
-  ['icon'=>'calendar',    'label'=>'Mis Citas',     'url'=>'pages/citas/ver.php'],
-  ['icon'=>'file-text',   'label'=>'Historial Medico','url'=>'pages/paciente/historial.php'],
-  ['icon'=>'user',        'label'=>'Mi Perfil',     'url'=>'pages/paciente/perfil.php'],
-  ['icon'=>'settings',    'label'=>'Configuracion', 'url'=>'pages/paciente/config.php'],
+  ['icon'=> BASE_URL . '/assets/img/icons/dashboard.svg',    'label'=>'Dashboard',      'url'=>'pages/paciente/dashboard.php'],
+  ['icon'=> BASE_URL . '/assets/img/icons/citas.svg',        'label'=>'Mis Citas',      'url'=>'pages/citas/ver.php'],
+  ['icon'=> BASE_URL . '/assets/img/icons/historial.svg',    'label'=>'Historial Medico','url'=>'pages/paciente/historial.php'],
+  ['icon'=> BASE_URL . '/assets/img/icons/perfil.svg',       'label'=>'Mi Perfil',      'url'=>'pages/paciente/perfil.php'],
+  ['icon'=> BASE_URL . '/assets/img/icons/configuracion.svg','label'=>'Configuracion',  'url'=>'pages/paciente/config.php'],
 ];
 
 $nav = match($rol) {
@@ -38,9 +38,6 @@ $nav = match($rol) {
 
   <!-- Brand -->
   <div class="sidebar-brand">
-    <div class="sidebar-logo">
-      <img src="<?= BASE_URL ?>/assets/img/icons/logo.svg" width="20" height="20" alt="logo">
-    </div>
     <div>
       <div class="sidebar-brand-text">Hospital Palacio de la salud</div>
       <div class="sidebar-brand-role"><?= ucfirst($rol) ?></div>
@@ -55,8 +52,7 @@ $nav = match($rol) {
     ?>
       <a href="<?= BASE_URL ?>/<?= $item['url'] ?>" class="nav-item <?= $active ?>">
         <span class="nav-icon">
-          <img src="<?= BASE_URL ?>/assets/img/icons/<?= $item['icon'] ?>.svg"
-               width="16" height="16" alt="<?= $item['label'] ?>">
+          <img src="<?= $item['icon'] ?>" width="16" height="16" alt="<?= $item['label'] ?>">
         </span>
         <?= $item['label'] ?>
       </a>
@@ -73,7 +69,7 @@ $nav = match($rol) {
       </div>
     </div>
     <a href="<?= BASE_URL ?>/logout.php" class="logout-btn">
-      <img src="<?= BASE_URL ?>/assets/img/icons/logout.svg" width="16" height="16" alt="logout">
+      <img src="<?= BASE_URL ?>/assets/img/svg/sidebar-logout.svg" width="16" height="16" alt="logout">
       Cerrar sesion
     </a>
   </div>
@@ -83,8 +79,8 @@ $nav = match($rol) {
 <style>
   .sidebar {
     width: var(--sidebar-w);
-    background: #0f172a;
-    color: #94a3b8;
+    background: #ffffff;
+    border-right: 1px solid #e2e8f0;
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -95,29 +91,19 @@ $nav = match($rol) {
 
   .sidebar-brand {
     padding: 20px;
-    border-bottom: 1px solid #1e293b;
+    border-bottom: 1px solid #e2e8f0;
     display: flex;
     align-items: center;
     gap: 10px;
   }
 
-  .sidebar-logo {
-    width: 36px; height: 36px;
-    background: #2563eb;
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .sidebar-logo img { filter: brightness(0) invert(1); }
-
   .sidebar-brand-text {
-    font-size: 15px; font-weight: 700; color: #fff;
+    font-size: 15px; font-weight: 700; color: #0f172a;
     line-height: 1.2;
   }
 
   .sidebar-brand-role {
-    font-size: 11px; color: #475569;
+    font-size: 11px; color: #94a3b8;
   }
 
   .sidebar-nav { flex: 1; padding: 12px 0; }
@@ -125,7 +111,7 @@ $nav = match($rol) {
   .nav-section-label {
     font-size: 10px; font-weight: 700;
     text-transform: uppercase; letter-spacing: .1em;
-    color: #334155; padding: 12px 20px 6px;
+    color: #94a3b8; padding: 12px 20px 6px;
   }
 
   .nav-item {
@@ -137,39 +123,38 @@ $nav = match($rol) {
     text-decoration: none;
     border-radius: 8px;
     margin: 2px 8px;
-    border-left: none;
   }
 
   .nav-item:hover {
-    background: #1e293b;
-    color: #cbd5e1;
+    background: #f1f5f9;
+    color: #0f172a;
     text-decoration: none;
   }
 
   .nav-item.active {
-    background: #2563eb;
-    color: #fff;
+    background: #eff6ff;
+    color: #2563eb;
+    font-weight: 600;
   }
 
-  .nav-item.active img,
-  .nav-item:hover img {
-    filter: brightness(0) invert(1);
+  .nav-item img {
+    filter: brightness(0) invert(0.5);
+    transition: none;
+  }
+
+  .nav-item.active img {
+    filter: invert(37%) sepia(93%) saturate(1352%) hue-rotate(204deg) brightness(95%) contrast(96%);
   }
 
   .nav-icon {
-    width: 32px; height: 32px;
-    border-radius: 8px;
+    width: 20px; height: 20px;
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
   }
 
-  .nav-item.active .nav-icon {
-    background: rgba(255,255,255,.15);
-  }
-
   .sidebar-footer {
     padding: 16px 20px;
-    border-top: 1px solid #1e293b;
+    border-top: 1px solid #e2e8f0;
   }
 
   .sidebar-user {
@@ -188,23 +173,26 @@ $nav = match($rol) {
   }
 
   .sidebar-user-info .name {
-    font-size: 13px; font-weight: 600; color: #e2e8f0;
+    font-size: 13px; font-weight: 600; color: #0f172a;
     line-height: 1.2;
   }
 
   .sidebar-user-info .role {
-    font-size: 11px; color: #475569;
+    font-size: 11px; color: #94a3b8;
   }
 
   .logout-btn {
     display: flex; align-items: center; gap: 8px;
     font-size: 13px; color: #ef4444;
-    font-weight: 500; cursor: pointer;
+    font-weight: 500;
     text-decoration: none;
     transition: color .15s;
     padding: 6px 0;
   }
 
   .logout-btn:hover { color: #dc2626; text-decoration: none; }
-  .logout-btn img { filter: invert(27%) sepia(93%) saturate(1352%) hue-rotate(335deg) brightness(90%) contrast(119%); }
+
+  .logout-btn img {
+    filter: invert(27%) sepia(93%) saturate(1352%) hue-rotate(335deg) brightness(90%) contrast(119%);
+  }
 </style>

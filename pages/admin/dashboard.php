@@ -66,8 +66,8 @@ $colores = ['#2563eb','#7c3aed','#db2777','#059669','#d97706','#dc2626'];
       <div class="stats-grid">
         <div class="stat-card">
           <div>
-            <div class="stat-card-icon blue">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <div class="stat-card-icon">
+              <img src="<?= BASE_URL ?>/assets/img/svg/sidebar-user.svg" width="22" height="22" alt="">
             </div>
             <div class="stat-value"><?= $stats['usuarios'] ?></div>
             <div class="stat-label">Total Usuarios</div>
@@ -76,8 +76,8 @@ $colores = ['#2563eb','#7c3aed','#db2777','#059669','#d97706','#dc2626'];
 
         <div class="stat-card">
           <div>
-            <div class="stat-card-icon green">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg>
+            <div class="stat-card-icon">
+              <img src="<?= BASE_URL ?>/assets/img/svg/sidebar-doctor.svg" width="22" height="22" alt="">
             </div>
             <div class="stat-value"><?= $stats['doctores'] ?></div>
             <div class="stat-label">Total Doctores</div>
@@ -86,8 +86,8 @@ $colores = ['#2563eb','#7c3aed','#db2777','#059669','#d97706','#dc2626'];
 
         <div class="stat-card">
           <div>
-            <div class="stat-card-icon purple">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <div class="stat-card-icon">
+              <img src="<?= BASE_URL ?>/assets/img/svg/users-total.svg" width="22" height="22" alt="">
             </div>
             <div class="stat-value"><?= $stats['pacientes'] ?></div>
             <div class="stat-label">Total Pacientes</div>
@@ -96,8 +96,8 @@ $colores = ['#2563eb','#7c3aed','#db2777','#059669','#d97706','#dc2626'];
 
         <div class="stat-card">
           <div>
-            <div class="stat-card-icon amber">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <div class="stat-card-icon">
+              <img src="<?= BASE_URL ?>/assets/img/svg/sidebar-citas.svg" width="22" height="22" alt="">
             </div>
             <div class="stat-value"><?= $hoy ?></div>
             <div class="stat-label">Citas del Dia</div>
@@ -130,7 +130,6 @@ $colores = ['#2563eb','#7c3aed','#db2777','#059669','#d97706','#dc2626'];
               <tbody>
               <?php while ($c = $citasRecientes->fetch_assoc()):
                 $ini = strtoupper(substr($c['paciente'], 0, 2));
-                $color = $colores[array_search($c['paciente'], array_column([], 'paciente')) % count($colores)];
               ?>
                 <tr>
                   <td>
@@ -218,5 +217,16 @@ $colores = ['#2563eb','#7c3aed','#db2777','#059669','#d97706','#dc2626'];
     </div>
   </div>
 </div>
+
+<style>
+  /* targetas */
+  .stat-card-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 14px;
+    background: #fff;
+  }
+</style>
 
 <?php include __DIR__ . '/../../includes/footer.php'; ?>
