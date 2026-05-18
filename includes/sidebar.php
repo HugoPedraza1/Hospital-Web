@@ -13,19 +13,19 @@ $navAdmin = [
 ];
 
 $navDoctor = [
-  ['icon'=> BASE_URL . '/assets/img/icons/dashboard.svg',    'label'=>'Dashboard',      'url'=>'pages/doctor/dashboard.php'],
-  ['icon'=> BASE_URL . '/assets/img/icons/citas.svg',        'label'=>'Agenda del Dia', 'url'=>'pages/doctor/citas.php'],
-  ['icon'=> BASE_URL . '/assets/img/icons/usuarios.svg',     'label'=>'Mis Pacientes',  'url'=>'pages/doctor/pacientes.php'],
-  ['icon'=> BASE_URL . '/assets/img/icons/historial.svg',    'label'=>'Historial Medico','url'=>'pages/historial/ver.php'],
-  ['icon'=> BASE_URL . '/assets/img/icons/configuracion.svg','label'=>'Configuracion',  'url'=>'pages/doctor/perfil.php'],
+  ['icon'=> BASE_URL . '/assets/img/svg/sidebar-dashboard.svg',    'label'=>'Dashboard',      'url'=>'pages/doctor/dashboard.php'],
+  ['icon'=> BASE_URL . '/assets/img/svg/sidebar-citas.svg',        'label'=>'Agenda del Dia', 'url'=>'pages/doctor/citas.php'],
+  ['icon'=> BASE_URL . '/assets/img/svg/sidebar-user.svg',     'label'=>'Mis Pacientes',  'url'=>'pages/doctor/pacientes.php'],
+  ['icon'=> BASE_URL . '/assets/img/svg/sidebar-historial.svg',    'label'=>'Historial Medico','url'=>'pages/historial/ver.php'],
+  ['icon'=> BASE_URL . '/assets/img/svg/sidebar-settings.svg','label'=>'Configuracion',  'url'=>'pages/doctor/perfil.php'],
 ];
 
 $navPaciente = [
-  ['icon'=> BASE_URL . '/assets/img/icons/dashboard.svg',    'label'=>'Dashboard',      'url'=>'pages/paciente/dashboard.php'],
-  ['icon'=> BASE_URL . '/assets/img/icons/citas.svg',        'label'=>'Mis Citas',      'url'=>'pages/citas/ver.php'],
-  ['icon'=> BASE_URL . '/assets/img/icons/historial.svg',    'label'=>'Historial Medico','url'=>'pages/paciente/historial.php'],
-  ['icon'=> BASE_URL . '/assets/img/icons/perfil.svg',       'label'=>'Mi Perfil',      'url'=>'pages/paciente/perfil.php'],
-  ['icon'=> BASE_URL . '/assets/img/icons/configuracion.svg','label'=>'Configuracion',  'url'=>'pages/paciente/config.php'],
+  ['icon'=> BASE_URL . '/assets/img/svg/sidebar-dashboard.svg',    'label'=>'Dashboard',      'url'=>'pages/paciente/dashboard.php'],
+  ['icon'=> BASE_URL . '/assets/img/svg/sidebar-citas.svg',        'label'=>'Mis Citas',      'url'=>'pages/citas/ver.php'],
+  ['icon'=> BASE_URL . '/assets/img/svg/sidebar-historial.svg',    'label'=>'Historial Medico','url'=>'pages/paciente/historial.php'],
+  ['icon'=> BASE_URL . '/assets/img/svg/sidebar-user.svg',       'label'=>'Mi Perfil',      'url'=>'pages/paciente/perfil.php'],
+  ['icon'=> BASE_URL . '/assets/img/svg/sidebar-settings.svg','label'=>'Configuracion',  'url'=>'pages/paciente/config.php'],
 ];
 
 $nav = match($rol) {
