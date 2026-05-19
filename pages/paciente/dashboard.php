@@ -70,7 +70,7 @@ $colores = ['#2563eb','#7c3aed','#db2777','#059669','#d97706','#dc2626'];
         <div class="stat-card">
           <div>
             <div class="stat-card-icon">
-              <img src="<?= BASE_URL ?>/assets/img/icons/citas.svg" width="22" height="22" alt="">
+              <img src="<?= BASE_URL ?>/assets/img/svg/calendar.svg" width="22" height="22" alt="">
             </div>
             <div class="stat-value"><?= $nProximas ?></div>
             <div class="stat-label">Proximas Citas</div>
@@ -80,7 +80,7 @@ $colores = ['#2563eb','#7c3aed','#db2777','#059669','#d97706','#dc2626'];
         <div class="stat-card">
           <div>
             <div class="stat-card-icon">
-              <img src="<?= BASE_URL ?>/assets/img/icons/historial.svg" width="22" height="22" alt="">
+              <img src="<?= BASE_URL ?>/assets/img/svg/consultas-totales.svg" width="22" height="22" alt="">
             </div>
             <div class="stat-value"><?= $nHistorial ?></div>
             <div class="stat-label">Consultas Totales</div>
@@ -90,7 +90,7 @@ $colores = ['#2563eb','#7c3aed','#db2777','#059669','#d97706','#dc2626'];
         <div class="stat-card">
           <div>
             <div class="stat-card-icon">
-              <img src="<?= BASE_URL ?>/assets/img/icons/dashboard.svg" width="22" height="22" alt="">
+              <img src="<?= BASE_URL ?>/assets/img/svg/sidebar-historial.svg" width="22" height="22" alt="">
             </div>
             <div class="stat-value"><?= $nCitas ?></div>
             <div class="stat-label">Total Citas</div>
@@ -102,15 +102,15 @@ $colores = ['#2563eb','#7c3aed','#db2777','#059669','#d97706','#dc2626'];
       <div class="card" style="margin-bottom:20px;">
         <div class="card-body" style="display:flex;gap:12px;flex-wrap:wrap;">
           <a href="<?= BASE_URL ?>/pages/citas/agendar.php" class="btn btn-primary">
-            <img src="<?= BASE_URL ?>/assets/img/icons/citas.svg" width="16" height="16" style="filter:brightness(0) invert(1);">
+            <img src="<?= BASE_URL ?>/assets/img/svg/sidebar-citas.svg" width="16" height="16" style="filter:brightness(0) invert(1);">
             Agendar Cita
           </a>
           <a href="<?= BASE_URL ?>/pages/paciente/historial.php" class="btn btn-outline">
-            <img src="<?= BASE_URL ?>/assets/img/icons/historial.svg" width="16" height="16">
+            <img src="<?= BASE_URL ?>/assets/img/svg/sidebar-historial.svg" width="16" height="16">
             Ver Historial
           </a>
           <a href="<?= BASE_URL ?>/pages/doctores/listar.php" class="btn btn-outline">
-            <img src="<?= BASE_URL ?>/assets/img/icons/doctores.svg" width="16" height="16">
+            <img src="<?= BASE_URL ?>/assets/img/svg/sidebar-doctor.svg" width="16" height="16">
             Ver Doctores
           </a>
         </div>

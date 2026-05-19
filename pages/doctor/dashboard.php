@@ -74,7 +74,7 @@ $colores = ['#2563eb','#7c3aed','#db2777','#059669','#d97706','#dc2626'];
         <div class="stat-card">
           <div>
             <div class="stat-card-icon">
-              <img src="<?= BASE_URL ?>/assets/img/svg/stat-pacientes-hoy.svg" width="22" height="22" alt="">
+              <img src="<?= BASE_URL ?>/assets/img/svg/sidebar-user.svg" width="22" height="22" alt="">
             </div>
             <div class="stat-value"><?= $nHoy ?></div>
             <div class="stat-label">Pacientes Hoy</div>
@@ -84,7 +84,7 @@ $colores = ['#2563eb','#7c3aed','#db2777','#059669','#d97706','#dc2626'];
         <div class="stat-card">
           <div>
             <div class="stat-card-icon">
-              <img src="<?= BASE_URL ?>/assets/img/svg/stat-total-pacientes.svg" width="22" height="22" alt="">
+              <img src="<?= BASE_URL ?>/assets/img/svg/users-total.svg" width="22" height="22" alt="">
             </div>
             <div class="stat-value"><?= $nTotal ?></div>
             <div class="stat-label">Total Pacientes</div>
@@ -94,7 +94,7 @@ $colores = ['#2563eb','#7c3aed','#db2777','#059669','#d97706','#dc2626'];
         <div class="stat-card">
           <div>
             <div class="stat-card-icon">
-              <img src="<?= BASE_URL ?>/assets/img/svg/stat-consultas.svg" width="22" height="22" alt="">
+              <img src="<?= BASE_URL ?>/assets/img/svg/sidebar-historial.svg" width="22" height="22" alt="">
             </div>
             <div class="stat-value"><?= $nMes ?></div>
             <div class="stat-label">Consultas Mes</div>
@@ -104,7 +104,7 @@ $colores = ['#2563eb','#7c3aed','#db2777','#059669','#d97706','#dc2626'];
         <div class="stat-card">
           <div>
             <div class="stat-card-icon">
-              <img src="<?= BASE_URL ?>/assets/img/svg/stat-pendientes.svg" width="22" height="22" alt="">
+              <img src="<?= BASE_URL ?>/assets/img/svg/pin.svg" width="22" height="22" alt="">
             </div>
             <div class="stat-value"><?= $nPend ?></div>
             <div class="stat-label">Pendientes</div>

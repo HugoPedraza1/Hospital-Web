@@ -704,3 +704,5 @@ textarea.form-control { resize: vertical; min-height: 90px; }
 @media (max-width: 480px) {
   .stats-grid { grid-template-columns: 1fr; }
 }
+
+/* pendiente modo oscuro en todas las paginas incluye el sidebar */
