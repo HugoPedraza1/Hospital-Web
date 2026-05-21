@@ -23,6 +23,14 @@ if(!$paciente){
     die('No existe perfil de paciente');
 }
 
+$edad = '';
+
+if(!empty($paciente['fecha_nacimiento'])){
+    $nacimiento = new DateTime($paciente['fecha_nacimiento']);
+    $hoy = new DateTime();
+    $edad = $hoy->diff($nacimiento)->y;
+}
+
 $pid = $paciente['id'];
 
 $success = '';
@@ -34,6 +42,9 @@ if(isset($_POST['guardar'])){
     $email = trim($_POST['email']);
     $telefono = trim($_POST['telefono']);
     $direccion = trim($_POST['direccion']);
+    $fecha_nacimiento = $_POST['fecha_nacimiento'];
+    $tipo_sangre = trim($_POST['tipo_sangre']);
+    $alergias = trim($_POST['alergias']);
 
     $upUser = $conn->prepare("
         UPDATE usuarios
@@ -50,14 +61,17 @@ if(isset($_POST['guardar'])){
 
     $upPac = $conn->prepare("
         UPDATE pacientes
-        SET telefono = ?, direccion = ?
+        SET telefono = ?, direccion = ?, fecha_nacimiento = ?, tipo_sangre = ?, alergias = ?
         WHERE id = ?
     ");
 
     $upPac->bind_param(
-        'ssi',
+        'sssssi',
         $telefono,
         $direccion,
+        $fecha_nacimiento,
+        $tipo_sangre,
+        $alergias,
         $pid
     );
 
@@ -71,6 +85,15 @@ if(isset($_POST['guardar'])){
         $paciente['email'] = $email;
         $paciente['telefono'] = $telefono;
         $paciente['direccion'] = $direccion;
+        $paciente['fecha_nacimiento'] = $fecha_nacimiento;
+        $paciente['tipo_sangre'] = $tipo_sangre;
+        $paciente['alergias'] = $alergias;
+
+        if(!empty($fecha_nacimiento)){
+            $nacimiento = new DateTime($fecha_nacimiento);
+            $hoy = new DateTime();
+            $edad = $hoy->diff($nacimiento)->y;
+        }
 
     }else{
         $error = 'Error al actualizar';
@@ -240,20 +263,35 @@ $nCompletadas = $completadas->get_result()->fetch_assoc()['c'];
 <label>Fecha de nacimiento</label>
 
 <input type="date"
-       class="form-control">
+       name="fecha_nacimiento"
+       class="form-control"
+       value="<?= htmlspecialchars($paciente['fecha_nacimiento'] ?? '') ?>">
 </div>
 
 <div class="form-group">
-<label>Genero</label>
+<label>Edad</label>
 
-<select class="form-control">
+<input type="text"
+       class="form-control"
+       value="<?= $edad ?> años"
+       readonly>
+</div>
 
-<option>Seleccionar</option>
-<option>Masculino</option>
-<option>Femenino</option>
-<option>Otro</option>
+<div class="form-group">
+<label>Tipo de sangre</label>
 
-</select>
+<input type="text"
+       name="tipo_sangre"
+       class="form-control"
+       value="<?= htmlspecialchars($paciente['tipo_sangre'] ?? '') ?>">
+</div>
+
+<div class="form-group">
+<label>Alergias</label>
+
+<textarea name="alergias"
+          class="form-control"
+          rows="3"><?= htmlspecialchars($paciente['alergias'] ?? '') ?></textarea>
 </div>
 
 </div>
@@ -267,83 +305,6 @@ Guardar cambios
 </button>
 
 </form>
-
-</div>
-
-</div>
-
-<div style="display:flex;flex-direction:column;gap:20px;">
-
-<div class="card">
-
-<div class="card-header">
-    <div>
-        <h2>Seguridad</h2>
-        <p>Cambia tu contraseña</p>
-    </div>
-</div>
-
-<div class="card-body">
-
-<form method="POST">
-
-<div class="form-group">
-<label>Nueva contraseña</label>
-
-<input type="password"
-       name="nueva_password"
-       class="form-control">
-</div>
-
-<div class="form-group">
-<label>Confirmar contraseña</label>
-
-<input type="password"
-       name="confirmar_password"
-       class="form-control">
-</div>
-
-<button type="submit"
-        name="password"
-        class="btn btn-primary">
-
-Actualizar contraseña
-
-</button>
-
-</form>
-
-</div>
-
-</div>
-
-<div class="card" style="background:#0f172a;color:white;">
-
-<div class="card-header">
-    <div>
-        <h2 style="color:white;">Estadisticas</h2>
-        <p style="color:#94a3b8;">Resumen de actividad</p>
-    </div>
-</div>
-
-<div class="card-body">
-
-<div style="margin-bottom:20px;">
-    <h1><?= $nCitas ?></h1>
-    <p>Total de citas</p>
-</div>
-
-<div style="margin-bottom:20px;">
-    <h1><?= $nCompletadas ?></h1>
-    <p>Citas completadas</p>
-</div>
-
-<div>
-    <h1><?= $nProximas ?></h1>
-    <p>Proximas citas</p>
-</div>
-
-</div>
 
 </div>
 

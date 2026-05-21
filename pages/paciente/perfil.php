@@ -1,18 +1,10 @@
 <?php
-$pageTitle = 'Mi Perfil';
-
+$pageTitle = 'Perfil del Paciente';
 require_once __DIR__ . '/../../config/config.php';
 requireRole('paciente');
-
 require_once __DIR__ . '/../../includes/db.php';
 
-/*
-|--------------------------------------------------------------------------
-| OBTENER PACIENTE
-|--------------------------------------------------------------------------
-*/
-
-$stmt = $conn->prepare("
+$pacienteRow = $conn->prepare("
     SELECT 
         p.*,
         u.nombre,
@@ -22,166 +14,143 @@ $stmt = $conn->prepare("
     WHERE p.usuario_id = ?
 ");
 
-$stmt->bind_param('i', $_SESSION['usuario_id']);
-$stmt->execute();
+$pacienteRow->bind_param('i', $_SESSION['usuario_id']);
+$pacienteRow->execute();
 
-$paciente = $stmt->get_result()->fetch_assoc();
-
-/*
-|--------------------------------------------------------------------------
-| SI EL PACIENTE NO EXISTE, CREAR PERFIL AUTOMATICAMENTE
-|--------------------------------------------------------------------------
-*/
+$paciente = $pacienteRow->get_result()->fetch_assoc();
 
 if(!$paciente){
-
-    $crear = $conn->prepare("
-        INSERT INTO pacientes (usuario_id)
-        VALUES (?)
-    ");
-
-    $crear->bind_param('i', $_SESSION['usuario_id']);
-    $crear->execute();
-
-    // Volver a consultar
-    $stmt->execute();
-    $paciente = $stmt->get_result()->fetch_assoc();
+    die('No existe perfil de paciente');
 }
 
+$edad = '';
+
+if(!empty($paciente['fecha_nacimiento'])){
+    $nacimiento = new DateTime($paciente['fecha_nacimiento']);
+    $hoy = new DateTime();
+    $edad = $hoy->diff($nacimiento)->y;
+}
 ?>
 
 <?php include __DIR__ . '/../../includes/header.php'; ?>
 
 <div class="layout">
 
-    <?php include __DIR__ . '/../../includes/sidebar.php'; ?>
+<?php include __DIR__ . '/../../includes/sidebar.php'; ?>
 
-    <div class="main">
+<div class="main">
 
-        <!-- TOPBAR -->
-        <div class="topbar">
+<div class="topbar">
 
-            <div class="topbar-left">
-                <h1>Mi Perfil</h1>
-                <p>Información personal del paciente</p>
-            </div>
+    <div class="topbar-left">
+        <h1>Perfil del Paciente</h1>
+        <p>Informacion personal del paciente</p>
+    </div>
 
-            <div class="topbar-right">
-                <div class="topbar-avatar">
-                    <?= strtoupper(substr($_SESSION['nombre'],0,2)) ?>
-                </div>
-            </div>
-
+    <div class="topbar-right">
+        <div class="topbar-avatar">
+            <?= strtoupper(substr($_SESSION['nombre'],0,2)) ?>
         </div>
-
-        <div class="content">
-
-            <div class="card">
-
-                <!-- HEADER PERFIL -->
-                <div class="perfil-header">
-
-                    <div class="perfil-avatar">
-                        <?= strtoupper(substr($paciente['nombre'],0,2)) ?>
-                    </div>
-
-                    <div>
-                        <h2><?= htmlspecialchars($paciente['nombre']) ?></h2>
-                        <p>Paciente registrado</p>
-                    </div>
-
-                </div>
-
-                <!-- DATOS -->
-                <div class="perfil-grid">
-
-                    <div class="perfil-item">
-                        <label>Nombre</label>
-                        <span><?= htmlspecialchars($paciente['nombre']) ?></span>
-                    </div>
-
-                    <div class="perfil-item">
-                        <label>Correo</label>
-                        <span><?= htmlspecialchars($paciente['email']) ?></span>
-                    </div>
-
-                    <div class="perfil-item">
-                        <label>Teléfono</label>
-                        <span><?= htmlspecialchars($paciente['telefono'] ?? 'No registrado') ?></span>
-                    </div>
-
-                    <div class="perfil-item">
-                        <label>Dirección</label>
-                        <span><?= htmlspecialchars($paciente['direccion'] ?? 'No registrada') ?></span>
-                    </div>
-
-                    <div class="perfil-item">
-                        <label>Fecha de nacimiento</label>
-                        <span><?= htmlspecialchars($paciente['fecha_nacimiento'] ?? 'No registrada') ?></span>
-                    </div>
-
-                    <div class="perfil-item">
-                        <label>Género</label>
-                        <span><?= htmlspecialchars($paciente['genero'] ?? 'No registrado') ?></span>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
     </div>
 
 </div>
 
-<style>
+<div class="content">
 
-.perfil-header{
-    display:flex;
-    align-items:center;
-    gap:20px;
-    margin-bottom:30px;
-}
+<div class="card">
 
-.perfil-avatar{
-    width:80px;
-    height:80px;
-    border-radius:50%;
-    background:#2563eb;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:28px;
-    font-weight:bold;
-}
+<div class="card-header">
+    <div>
+        <h2>Informacion Personal</h2>
+        <p>Datos registrados del paciente</p>
+    </div>
+</div>
 
-.perfil-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
-    gap:20px;
-}
+<div class="card-body">
 
-.perfil-item{
-    background:#f8fafc;
-    border:1px solid #e2e8f0;
-    border-radius:12px;
-    padding:18px;
-}
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
 
-.perfil-item label{
-    display:block;
-    color:#64748b;
-    font-size:14px;
-    margin-bottom:8px;
-}
+<div class="form-group">
+<label>Nombre completo</label>
 
-.perfil-item span{
-    color:#0f172a;
-    font-weight:600;
-}
+<input type="text"
+       class="form-control"
+       value="<?= htmlspecialchars($paciente['nombre']) ?>"
+       readonly>
+</div>
 
-</style>
+<div class="form-group">
+<label>Correo electronico</label>
+
+<input type="email"
+       class="form-control"
+       value="<?= htmlspecialchars($paciente['email']) ?>"
+       readonly>
+</div>
+
+<div class="form-group">
+<label>Telefono</label>
+
+<input type="text"
+       class="form-control"
+       value="<?= htmlspecialchars($paciente['telefono'] ?? 'No registrado') ?>"
+       readonly>
+</div>
+
+<div class="form-group">
+<label>Direccion</label>
+
+<input type="text"
+       class="form-control"
+       value="<?= htmlspecialchars($paciente['direccion'] ?? 'No registrada') ?>"
+       readonly>
+</div>
+
+<div class="form-group">
+<label>Fecha de nacimiento</label>
+
+<input type="text"
+       class="form-control"
+       value="<?= htmlspecialchars($paciente['fecha_nacimiento'] ?? 'No registrada') ?>"
+       readonly>
+</div>
+
+<div class="form-group">
+<label>Edad</label>
+
+<input type="text"
+       class="form-control"
+       value="<?= $edad ?> años"
+       readonly>
+</div>
+
+<div class="form-group">
+<label>Tipo de sangre</label>
+
+<input type="text"
+       class="form-control"
+       value="<?= htmlspecialchars($paciente['tipo_sangre'] ?? 'No registrado') ?>"
+       readonly>
+</div>
+
+<div class="form-group" style="grid-column:1 / span 2;">
+<label>Alergias</label>
+
+<textarea class="form-control"
+          rows="3"
+          readonly><?= htmlspecialchars($paciente['alergias'] ?? 'No registradas') ?></textarea>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
 
 <?php include __DIR__ . '/../../includes/footer.php'; ?>
