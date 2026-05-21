@@ -60,11 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <?php if ($success): ?>
       <div class="card" style="max-width:500px;">
         <div class="card-body" style="text-align:center;padding:40px 20px;">
-          <div style="width:64px;height:64px;background:#f0fdf4;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
           <h2 style="font-size:20px;font-weight:800;margin-bottom:8px;">Doctor registrado</h2>
-          <p style="color:#64748b;font-size:14px;margin-bottom:24px;">El doctor ha sido agregado exitosamente al sistema.</p>
+          <p style="color:#64748b;font-size:14px;margin-bottom:24px;">El doctor agregdo exitosamente al sistema.</p>
           <div style="display:flex;gap:10px;justify-content:center;">
             <a href="<?= BASE_URL ?>/pages/doctores/listar.php" class="btn btn-primary">Ver doctores</a>
             <a href="<?= BASE_URL ?>/pages/doctores/registrar.php" class="btn btn-outline">Registrar otro</a>
@@ -75,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <?php else: ?>
       <div class="card" style="max-width:600px;">
         <div class="card-header">
-          <div><h2>Datos del doctor</h2><p>Completa la informacion del nuevo medico</p></div>
+          <div><h2>Datos del doctor</h2><p>Ingresa toda la informacion</p></div>
         </div>
         <div class="card-body">
           <?php if ($error): ?>
@@ -84,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
           <form method="POST">
             <div class="form-group">
-              <label>Nombre completo *</label>
+              <label>Nombre completo (Obligatorio)</label>
               <input type="text" name="nombre" class="form-control"
                      placeholder="Dr. Nombre Apellido" required
                      value="<?= htmlspecialchars($_POST['nombre'] ?? '') ?>">
@@ -92,13 +89,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
               <div class="form-group">
-                <label>Correo electronico *</label>
+                <label>Correo electronico (Obligatorio)</label>
                 <input type="email" name="email" class="form-control"
                        placeholder="doctor@hospital.com" required
                        value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
               </div>
               <div class="form-group">
-                <label>Contrasena *</label>
+                <label>Contrasena (Obligatorio)</label>
                 <input type="password" name="password" class="form-control"
                        placeholder="Minimo 6 caracteres" required>
               </div>

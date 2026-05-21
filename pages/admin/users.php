@@ -39,8 +39,8 @@ if ($params) { $stmt->bind_param($types, ...$params); }
 $stmt->execute();
 $usuarios = $stmt->get_result();
 
-$colores = ['admin'=>'#dc2626','doctor'=>'#2563eb','paciente'=>'#059669'];
 $rolesLabel = ['admin'=>'Admin','doctor'=>'Doctor','paciente'=>'Paciente'];
+$colores = ['admin'=>'#dc2626','doctor'=>'#2563eb','paciente'=>'#059669'];
 ?>
 <?php include __DIR__ . '/../../includes/header.php'; ?>
 
@@ -87,8 +87,8 @@ $rolesLabel = ['admin'=>'Admin','doctor'=>'Doctor','paciente'=>'Paciente'];
 
       <div class="card">
         <div class="card-header">
-          <div><h2>Listado de usuarios</h2></div>
-          <a href="<?= BASE_URL ?>/register.php" class="btn btn-primary btn-sm">+ Nuevo usuario</a>
+          <div><h2>Lista de usuarios</h2></div>
+          <a href="<?= BASE_URL ?>/register.php" class="btn btn-primary btn-sm">Nuevo usuario</a>
         </div>
         <div class="table-wrap">
           <table>
@@ -116,25 +116,15 @@ $rolesLabel = ['admin'=>'Admin','doctor'=>'Doctor','paciente'=>'Paciente'];
                     </div>
                   </div>
                 </td>
-                <td>
-                  <span class="badge <?= $u['rol'] === 'admin' ? 'badge-danger' : ($u['rol'] === 'doctor' ? 'badge-info' : 'badge-success') ?>">
-                    <?= $rolesLabel[$u['rol']] ?? $u['rol'] ?>
-                  </span>
-                </td>
-                <td>
-                  <span class="badge <?= $u['activo'] ? 'badge-success' : 'badge-gray' ?>">
-                    <?= $u['activo'] ? 'Activo' : 'Inactivo' ?>
-                  </span>
-                </td>
+                <td><?= $rolesLabel[$u['rol']] ?? $u['rol'] ?></td>
+                <td><?= $u['activo'] ? 'Activo' : 'Inactivo' ?></td>
                 <td><div class="td-muted"><?= date('d/m/Y', strtotime($u['created_at'])) ?></div></td>
                 <td>
-                  <div style="display:flex;gap:6px;">
-                    <a href="?toggle=<?= $u['id'] ?>"
-                       class="btn btn-sm <?= $u['activo'] ? 'btn-outline' : 'btn-success' ?>"
-                       onclick="return confirm('<?= $u['activo'] ? 'Desactivar' : 'Activar' ?> este usuario?')">
-                      <?= $u['activo'] ? 'Desactivar' : 'Activar' ?>
-                    </a>
-                  </div>
+                  <a href="?toggle=<?= $u['id'] ?>"
+                     class="btn btn-sm <?= $u['activo'] ? 'btn-outline' : 'btn-success' ?>"
+                     onclick="return confirm('<?= $u['activo'] ? 'Desactivar' : 'Activar' ?> este usuario?')">
+                    <?= $u['activo'] ? 'Desactivar' : 'Activar' ?>
+                  </a>
                 </td>
               </tr>
             <?php endwhile; ?>

@@ -26,10 +26,7 @@ $colores = ['#2563eb','#7c3aed','#db2777','#059669','#d97706','#dc2626'];
         <p>Especialistas disponibles</p>
       </div>
       <div class="topbar-right">
-        <div class="notif-btn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-          <span class="notif-dot"></span>
-        </div>
+      
         <div class="topbar-avatar"><?= strtoupper(substr($_SESSION['nombre'],0,2)) ?></div>
       </div>
     </div>
@@ -78,9 +75,7 @@ $colores = ['#2563eb','#7c3aed','#db2777','#059669','#d97706','#dc2626'];
                 <td><?= htmlspecialchars($d['email']) ?></td>
                 <td><?= htmlspecialchars($d['telefono'] ?? '—') ?></td>
                 <td>
-                  <span class="badge <?= $d['disponible'] ? 'badge-success' : 'badge-danger' ?>">
-                    <?= $d['disponible'] ? 'Disponible' : 'No disponible' ?>
-                  </span>
+                  <?= $d['disponible'] ? 'Disponible' : 'No disponible' ?>
                 </td>
                 <?php if ($_SESSION['rol'] === 'paciente'): ?>
                 <td>
