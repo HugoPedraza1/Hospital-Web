@@ -1,0 +1,142 @@
+<?php
+$pageTitle = 'Historial Medico';
+require_once __DIR__ . '/../../config/config.php';
+requireRole('paciente');
+require_once __DIR__ . '/../../includes/db.php';
+
+$pacienteRow = $conn->prepare("SELECT id FROM pacientes WHERE usuario_id = ?");
+$pacienteRow->bind_param('i', $_SESSION['usuario_id']);
+$pacienteRow->execute();
+$pac = $pacienteRow->get_result()->fetch_assoc();
+
+if(!$pac){
+    die('No existe perfil de paciente');
+}
+
+$pid = $pac['id'];
+
+$historial = $conn->prepare("
+    SELECT 
+        c.fecha,
+        c.hora,
+        c.estado,
+        c.motivo,
+        u.nombre AS doctor
+    FROM citas c
+    JOIN doctores d ON c.doctor_id = d.id
+    JOIN usuarios u ON d.usuario_id = u.id
+    WHERE c.paciente_id = ?
+    ORDER BY c.fecha DESC, c.hora DESC
+");
+
+$historial->bind_param('i', $pid);
+$historial->execute();
+
+$historialResult = $historial->get_result();
+
+$colores = ['#2563eb','#7c3aed','#db2777','#059669','#d97706','#dc2626'];
+?>
+
+<?php include __DIR__ . '/../../includes/header.php'; ?>
+
+<div class="layout">
+
+<?php include __DIR__ . '/../../includes/sidebar.php'; ?>
+
+<div class="main">
+
+<div class="topbar">
+    <div class="topbar-left">
+        <h1>Historial Medico</h1>
+        <p>Todas tus citas registradas</p>
+    </div>
+
+    <div class="topbar-right">
+        <div class="topbar-avatar">
+            <?= strtoupper(substr($_SESSION['nombre'],0,2)) ?>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+
+<div class="card">
+
+<div class="card-header">
+    <div>
+        <h2>Historial de Citas</h2>
+        <p>Citas medicas del paciente</p>
+    </div>
+</div>
+
+<?php $count = 0; while($h = $historialResult->fetch_assoc()): $count++;
+
+$ini = strtoupper(substr($h['doctor'],0,2));
+
+$color = $colores[crc32($h['doctor']) % count($colores)];
+
+$hora12 = date('h:i A', strtotime($h['hora']));
+
+?>
+
+<div class="cita-row">
+
+<div class="cita-avatar" style="background:<?= $color ?>;">
+    <?= $ini ?>
+</div>
+
+<div class="cita-info">
+
+    <div class="nombre">
+        <?= htmlspecialchars($h['doctor']) ?>
+    </div>
+
+    <div class="sub">
+        <?= htmlspecialchars($h['motivo'] ?? 'Consulta medica') ?>
+    </div>
+
+</div>
+
+<div class="cita-meta">
+
+    <span>
+        <?= date('d/m/Y', strtotime($h['fecha'])) ?>
+    </span>
+
+    <span>
+        <?= $hora12 ?>
+    </span>
+
+</div>
+
+<span class="badge badge-info">
+    <?= ucfirst($h['estado']) ?>
+</span>
+
+</div>
+
+<?php endwhile; ?>
+
+<?php if($count === 0): ?>
+
+<div class="empty-state">
+
+<div class="empty-icon">
+    📅
+</div>
+
+<p>No tienes citas registradas.</p>
+
+</div>
+
+<?php endif; ?>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<?php include __DIR__ . '/../../includes/footer.php'; ?>
