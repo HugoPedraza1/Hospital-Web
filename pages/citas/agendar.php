@@ -8,6 +8,16 @@ $pacienteRow = $conn->prepare("SELECT id FROM pacientes WHERE usuario_id = ?");
 $pacienteRow->bind_param('i', $_SESSION['usuario_id']);
 $pacienteRow->execute();
 $pac = $pacienteRow->get_result()->fetch_assoc();
+
+if(!$pac){
+    $crear = $conn->prepare("INSERT INTO pacientes (usuario_id) VALUES (?)");
+    $crear->bind_param('i', $_SESSION['usuario_id']);
+    $crear->execute();
+
+    $pacienteRow->execute();
+    $pac = $pacienteRow->get_result()->fetch_assoc();
+}
+
 $pid = $pac['id'] ?? null;
 
 $doctores = $conn->query("
