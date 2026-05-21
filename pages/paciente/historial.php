@@ -121,8 +121,8 @@ $hora12 = date('h:i A', strtotime($h['hora']));
 
 <div class="empty-state">
 
-<div class="empty-icon">
-    📅
+<div class="empty-icon" style="display:inline-flex; margin:0 auto 12px; justify-content:center; align-items:center;">
+    <img src="<?= BASE_URL ?>/assets/img/svg/calendar.svg" width="40" height="40" style="filter:none; display:block;">
 </div>
 
 <p>No tienes citas registradas.</p>
