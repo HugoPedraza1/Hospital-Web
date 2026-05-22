@@ -45,6 +45,7 @@ $nav = match($rol) {
   </div>
 
   <!-- Nav -->
+  <button onclick="toggleTheme()">Tema oscuro</button>
   <nav class="sidebar-nav">
     <div class="nav-section-label">Menu</div>
     <?php foreach ($nav as $item):
